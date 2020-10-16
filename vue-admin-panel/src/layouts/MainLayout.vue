@@ -9,7 +9,6 @@
     >
       <q-list>
         <q-item-label header class="text-grey-8">
-          Essential Links
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -32,21 +31,18 @@ import Header from "components/Header.vue";
 const linksData = [
   {
     title: "Главная",
-    caption: "quasar.dev",
-    icon: "school",
+    icon: "analytics",
     link: "/"
   },
   {
     title: "Валюта",
-    caption: "github.com/quasarframework",
-    icon: "code",
+    icon: "attach_money",
     link: "/currency"
   },
   {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev"
+    title: "Файловый менеджер",
+    icon: "insert_drive_file",
+    link: "/filemanager"
   },
   {
     title: "Forum",
