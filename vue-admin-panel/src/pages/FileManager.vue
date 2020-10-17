@@ -4,58 +4,11 @@
       <div class="text-h4">Файловый менеджер</div>
     </div>
     <div
-      class="full-width row inline no-wrap justify-between items-stretch content-stretch"
+      class="full-width row inline no-wrap justify-between items-stretch content-stretch q-mb-lg"
     >
-      <q-card class="flex q-pa-md full-width justify-between">
-        <div class="header-items">
-          <q-btn
-            color="primary"
-            class="q-mr-lg"
-            icon="create_new_folder"
-            label="Создать папку"
-            outline
-          />
-          <q-btn color="primary" class="q-mr-lg" icon="add" label="Создать файл" outline />
-          <q-btn color="primary" class="q-mr-lg" icon="analytics" outline >
-            <q-tooltip>
-              Статистика файлового менеджера
-            </q-tooltip>
-          </q-btn>
-        </div>
-        <div class="header-items">
-          <q-btn-dropdown icon="drag_indicator" color="primary" label="Отображение" no-caps outline>
-            <q-list>
-              <q-item clickable v-close-popup >
-                <q-item-section avatar class="q-pr-none">
-                    <q-icon name="list" color="primary" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>Списком</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup >
-                <q-item-section avatar class="q-pr-none">
-                    <q-icon name="table_chart" color="primary" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>Таблицей</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup >
-                <q-item-section avatar class="q-pr-none">
-                    <q-icon name="view_agenda" color="primary" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>Карточками</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-        </div>
-      </q-card>
+      <FileManagerHeader />
     </div>
+    <FileManagerContent/>
   </q-page>
 </template>
 
@@ -63,6 +16,8 @@
 import { mapActions, mapGetters } from "vuex";
 import { date } from "quasar";
 import API from "../services/api";
+import FileManagerHeader from "../components/FileManagerHeader";
+import FileManagerContent from "../components/FileManagerContent";
 export default {
   name: "Currency",
   data: function() {
@@ -70,7 +25,8 @@ export default {
       loading: true,
       currentDate: null
     };
-  }
+  },
+  components: { FileManagerHeader, FileManagerContent }
 };
 </script>
 

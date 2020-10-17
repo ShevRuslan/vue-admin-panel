@@ -21,3 +21,7 @@ Route::group(['prefix' => 'currency'], function ($router) {
     Route::get('/getCurrency', 'API\CurrencyController@getCurrency');
     Route::get('/getCurrency/{currency}', 'API\CurrencyController@getCurrencyByCode');
 });
+Route::group(['prefix' => 'filemanager'], function ($router) {
+    Route::post('/createDir', 'API\FileManagerController@createDir');
+    Route::get('/getAllDirs', 'API\FileManagerController@getAllDir');
+});

@@ -29,5 +29,13 @@ class Api {
     const response = await this.getResource(`currency/getCurrency/${currency}`, null, "GET");
     return response;
   };
+  getAllDirs = async () => {
+    const response = await this.getResource(`filemanager/getAllDirs/`, null, "GET");
+    return response;
+  }
+  createDir = async (data) => {
+    const response = await this.getResource(`filemanager/createDir/`, data, "POST");
+    return response;
+  }
 }
 export default new Api();

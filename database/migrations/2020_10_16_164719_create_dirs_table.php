@@ -15,7 +15,6 @@ class CreateDirsTable extends Migration
     {
         Schema::create('dirs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
             $table->timestamps();
             $table->string('name');
             $table->string('author_id');
