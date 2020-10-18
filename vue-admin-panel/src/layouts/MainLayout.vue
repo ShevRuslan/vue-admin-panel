@@ -2,22 +2,28 @@
   <q-layout view="hHh LpR fFf">
     <Header></Header>
     <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
-      <q-list>
-        <q-item-label header class="text-grey-8">
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-          :to="link"
-        />
-      </q-list>
-    </q-drawer>
+        v-model="drawer"
+        show-if-above
+        :mini="getShowLeftMenu"
+        :width="250"
+        :breakpoint="500"
+        bordered
+        content-class="bg-grey-3"
+      >
+        <q-scroll-area class="fit">
+          <q-list padding>
+            <q-item clickable v-ripple v-for="link in essentialLinks" :key="link.link" :to="link.link">
+              <q-item-section avatar>
+                <q-icon :name="link.icon" />
+              </q-item-section>
+
+              <q-item-section>
+                {{link.title}}
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -28,6 +34,7 @@
 <script>
 import EssentialLink from "components/EssentialLink.vue";
 import Header from "components/Header.vue";
+import { mapMutations, mapGetters } from "vuex";
 const linksData = [
   {
     title: "Главная",
@@ -72,12 +79,17 @@ const linksData = [
 
 export default {
   name: "MainLayout",
-  components: { EssentialLink, Header },
+  components: {  Header },
   data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksData,
+      drawer: false,
+      miniState: false,
     };
-  }
+  },
+  computed: {
+    ...mapGetters("menu", ["getShowLeftMenu"]),
+  },
 };
 </script>

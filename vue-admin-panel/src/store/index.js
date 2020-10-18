@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import currency from './currency'
-
+import currency from './currency';
+import menu from './menu';
 Vue.use(Vuex)
 
 /*
@@ -17,7 +17,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      currency
+      currency,
+      menu
     },
 
     // enable strict mode (adds overhead!)
