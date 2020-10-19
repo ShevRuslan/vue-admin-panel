@@ -24,7 +24,7 @@ class FileManagerController extends Controller
         $error = "";
         if(Storage::exists($name)) {
             $status = "error";
-            $error  = "Такая папка уже существует";
+            $error  = "Папка {$name} уже существует!";
             return response()->json(['status' => $status, 'error' => $error], 400);
         }
         else {

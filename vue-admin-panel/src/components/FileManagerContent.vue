@@ -21,8 +21,10 @@ export default {
 
 <style lang="scss">
 .wrapper-filemanager-content {
+  height: 74vh;
   .wrapper-dirs {
     width: 20%;
+    height: inherit;
   }
   .wrapper-content {
     width: 80%;

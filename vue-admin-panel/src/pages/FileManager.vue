@@ -8,14 +8,12 @@
     >
       <FileManagerHeader />
     </div>
-    <FileManagerContent/>
+    <FileManagerContent />
   </q-page>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
 import { date } from "quasar";
-import API from "../services/api";
 import FileManagerHeader from "../components/FileManagerHeader";
 import FileManagerContent from "../components/FileManagerContent";
 export default {
@@ -26,7 +24,7 @@ export default {
       currentDate: null
     };
   },
-  components: { FileManagerHeader, FileManagerContent }
+  components: { FileManagerHeader, FileManagerContent },
 };
 </script>
 

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import currency from './currency';
 import menu from './menu';
+import filemanager from './filemanager';
 Vue.use(Vuex)
 
 /*
@@ -18,7 +19,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       currency,
-      menu
+      menu,
+      filemanager,
     },
 
     // enable strict mode (adds overhead!)

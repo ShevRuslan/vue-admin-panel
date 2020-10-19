@@ -60,9 +60,7 @@
         </q-list>
       </q-btn-dropdown>
     </div>
-    <q-dialog
-      v-model="modelCreateDir"
-    >
+    <q-dialog v-model="modelCreateDir">
       <q-card class="text-black" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Persistent</div>
@@ -81,21 +79,51 @@
 </template>
 
 <script>
-import Api from '../services/api';
+import { mapGetters, mapMutations, mapActions } from "vuex";
+import Api from "../services/api";
 export default {
   name: "FileManagerHeader",
   data() {
     return {
       modelCreateDir: false,
-      nameDir: '',
+      nameDir: ""
     };
   },
+  async created() {
+    this.getDirs();
+  },
   methods: {
+    ...mapActions("filemanager", ["changeDirs"]),
     openDialogCreateDir() {
       this.modelCreateDir = !this.modelCreateDir;
     },
-    createDir() {
-      Api.createDir({name: this.nameDir});
+    async createDir() {
+      let response = null;
+      try {
+        response = await Api.createDir({ name: this.nameDir });
+        this.$q.notify({
+          type: "positive",
+          message: `Папка ${this.nameDir} успешно создана!`,
+        });
+        this.getDirs();
+      } catch (e) {
+        console.log(e);
+        this.$q.notify({
+          type: "negative",
+          message: e.response.data.error
+        });
+      }
+      this.nameDir = "";
+    },
+    async getDirs() {
+      const response = await Api.getAllDirs();
+      const dirs = response.dirs;
+      const arrayDirs = [];
+      dirs.forEach(dir => {
+        const object = { label: dir.name, icon: "folder_open" };
+        arrayDirs.push(object);
+      });
+      this.changeDirs(arrayDirs);
     }
   }
 };
